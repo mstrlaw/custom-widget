@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom iFrame Test</title>
+  </head>
+  
+  <body>
+    
+    <nav>
+      <div class="group">
+        <label for="bgColor">Background:</label>
+        <input id="bgColor" type="text" placeholder="HEX Color" value="#EEE">
+      </div>
+
+      <div class="group">
+        <label for="borderColor">Border:</label>
+        <input id="borderColor" type="text" placeholder="HEX Color" value="#DDD">
+      </div>
+
+      <a href="#" class="btn" onclick="loadFrame()">Generate Widget</a>
+    </nav>
+    <h4>Preview</h4>
+    <div class="result-area">
+      <iframe id="frame" src="" width="100%" height="400px"></iframe>  
+    </div>
+
+    <div class="generated-code">
+      <h4>Generated Code</h4>
+      <div id="generatedCode">Click <em>Generate Widget</em> to get code</div>
+    </div>
+
+  </body>
+
+  <style>
+    nav{
+      margin-bottom: 15px;
+      padding: 10px 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 2px solid #DDD;
+    }
+    .group{
+      padding: 5px 10px;
+    }
+    .btn{
+      padding: 5px 10px;
+      text-decoration: none;
+      background: orange;
+      color: white;
+      border-radius: 4px;
+    }
+    .result-area{
+      border: 1px solid #DDD;
+    }
+    .generated-code{
+      padding: 15px;
+    }
+    #frame{
+      border: none;
+    }
+  </style>
+
+  <script>
+    let loadFrame = function(){
+      let bg = document.getElementById('bgColor').value
+      let border = document.getElementById('borderColor').value
+      let frame = document.getElementById('frame')
+      let generatedCode = document.getElementById('generatedCode')
+
+      let baseUrl = 'https://mstrlaw.github.io'
+      let src = `${ baseUrl }?backgroundColor=${ bg }&borderColor=${ border }`
+      
+      frame.setAttribute('src', src)
+
+      generatedCode.textContent = `<iframe id="frame" src="${ src }" width="100%" height="400px"></iframe>`
+
+    }
+  </script>
+
+</html>
+
